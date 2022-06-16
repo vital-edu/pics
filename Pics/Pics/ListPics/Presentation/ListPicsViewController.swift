@@ -15,6 +15,7 @@ class ListPicsViewController: UIViewController {
         let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(PicViewCell.self, forCellWithReuseIdentifier: PicViewCell.identifer)
 
         return collectionView
@@ -56,5 +57,11 @@ extension ListPicsViewController: UICollectionViewDataSource {
         cell.setup(imageUrl: pic.imageUrl)
 
         return cell
+    }
+}
+
+extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return viewModel?.pics.value[indexPath.item].size ?? .zero
     }
 }

@@ -25,7 +25,7 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
         self.repository = repository
 
         Task {
-            let result = await repository.getPics(params: PaginationParams(page: 0, limit: 10))
+            let result = await repository.getPics(params: PaginationParams(page: 0, limit: 15))
             switch result {
                 case .success(let pics):
                     process(pics)
