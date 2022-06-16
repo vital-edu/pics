@@ -8,21 +8,21 @@
 import Foundation
 
 protocol PicsRepositoryProtocol {
-    var localDataSource: PicsDataSource { get }
+    var remoteDataSource: PicsDataSource { get }
 
-    func getPics(params: PaginationParams) async throws -> Result<[Pic], Error>
+    func getPics(params: PaginationParams) async -> Result<[Pic], Error>
 }
 
 struct PicsRepository: PicsRepositoryProtocol {
-    let localDataSource: PicsDataSource
+    let remoteDataSource: PicsDataSource
 
-    init(localDataSource: PicsDataSource) {
-        self.localDataSource = localDataSource
+    init(remoteDataSource: PicsDataSource) {
+        self.remoteDataSource = remoteDataSource
     }
 
     func getPics(params: PaginationParams) async -> Result<[Pic], Error> {
         do {
-            let result = try await localDataSource.getAll(params: params)
+            let result = try await remoteDataSource.getAll(params: params)
             return .success(result)
         } catch {
             // TODO: transform error

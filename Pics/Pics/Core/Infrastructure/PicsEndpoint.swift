@@ -15,11 +15,11 @@ enum PicsEndpoint {
     var value: String {
         switch self {
         case .list:
-            return "v2/list"
+            return "/v2/list"
         case .show(let id):
-            return "id/\(id)"
+            return "/id/\(id)"
         case .showDetails(let id):
-            return "v2/id/\(id)/info"
+            return "/v2/id/\(id)/info"
         }
     }
 }

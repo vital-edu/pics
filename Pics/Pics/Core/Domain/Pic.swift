@@ -13,5 +13,9 @@ struct Pic: Decodable {
     let width: Double
     let height: Double
     let url: String
-    let downloadIUrl: String
+    let downloadUrl: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, author, width, height, url, downloadUrl = "download_url"
+    }
 }

@@ -16,11 +16,14 @@ class AppCoordinator: Coordinator {
     }
 
     override func start() {
-        let viewController = ViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let navigationController = UINavigationController()
 
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+
+        let listPicsCoordinator = ListPicsCoordinator(rootViewController: navigationController)
+        addChild(listPicsCoordinator)
+        listPicsCoordinator.start()
     }
 
     override func finish() {}
