@@ -28,6 +28,8 @@
 		E8C98C472858209F001908DC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E8C98C462858209F001908DC /* Alamofire */; };
 		E8C98C492858212B001908DC /* ApiClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C482858212B001908DC /* ApiClientProtocol.swift */; };
 		E8C98C4C28582186001908DC /* PicsApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C4B28582186001908DC /* PicsApiClient.swift */; };
+		E8E2A646285BD40F0009744E /* ListPicViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A645285BD40F0009744E /* ListPicViewData.swift */; };
+		E8E2A649285BD4B30009744E /* PicUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A648285BD4B30009744E /* PicUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		E8C98C402858073F001908DC /* PicsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsEndpoint.swift; sourceTree = "<group>"; };
 		E8C98C482858212B001908DC /* ApiClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientProtocol.swift; sourceTree = "<group>"; };
 		E8C98C4B28582186001908DC /* PicsApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsApiClient.swift; sourceTree = "<group>"; };
+		E8E2A645285BD40F0009744E /* ListPicViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPicViewData.swift; sourceTree = "<group>"; };
+		E8E2A648285BD4B30009744E /* PicUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 			children = (
 				E87A38EB285BABC1007AC2C6 /* ListPicsViewController.swift */,
 				E87A38F7285BBB0D007AC2C6 /* PicViewCell.swift */,
+				E8E2A645285BD40F0009744E /* ListPicViewData.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 		E8C98C3A28580642001908DC /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E8E2A647285BD4A70009744E /* Shared */,
 				E8C98C3F2858072F001908DC /* Infrastructure */,
 				E8C98C3B28580671001908DC /* Domain */,
 			);
@@ -196,6 +202,14 @@
 				E8C98C482858212B001908DC /* ApiClientProtocol.swift */,
 			);
 			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		E8E2A647285BD4A70009744E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E8E2A648285BD4B30009744E /* PicUtils.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +297,7 @@
 				E87A38F0285BB179007AC2C6 /* ListPicsViewModel.swift in Sources */,
 				E8C98C2E2857E0A8001908DC /* AppCordinator.swift in Sources */,
 				E87A38F6285BB7BC007AC2C6 /* ViewConfiguration.swift in Sources */,
+				E8E2A649285BD4B30009744E /* PicUtils.swift in Sources */,
 				E8C98C4C28582186001908DC /* PicsApiClient.swift in Sources */,
 				E87A38EC285BABC1007AC2C6 /* ListPicsViewController.swift in Sources */,
 				E8C98C312857E0E6001908DC /* Coordinator.swift in Sources */,
@@ -293,6 +308,7 @@
 				E87A38F3285BB1DC007AC2C6 /* Dynamic.swift in Sources */,
 				E8C98C39285805FC001908DC /* PicsDataSource.swift in Sources */,
 				E8C98C492858212B001908DC /* ApiClientProtocol.swift in Sources */,
+				E8E2A646285BD40F0009744E /* ListPicViewData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

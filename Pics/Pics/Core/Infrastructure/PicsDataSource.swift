@@ -43,11 +43,12 @@ struct PicsParams: QueryParams {
 
 struct PaginationParams: QueryParams {
     let page: Int
-    let limit: Int = 10
+    let limit: Int
     let queryItems: [URLQueryItem]
 
-    init(page: Int) {
+    init(page: Int, limit: Int = 10) {
         self.page = max(page, 0)
+        self.limit = max(limit, 1)
         self.queryItems = [
             URLQueryItem(name: "page", value: "\(page)"),
             URLQueryItem(name: "limit", value: "\(limit)"),

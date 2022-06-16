@@ -11,20 +11,21 @@ protocol ListPicsViewModelProtocol: AnyObject {
     var repository: PicsRepositoryProtocol { get }
 
     // MARK: properties
-    var pics: Dynamic<[Pic]> { get }
+    var pics: Dynamic<[ListPicViewDataType]> { get }
 
     // MARK: events
 }
 
 class ListPicsViewModel: ListPicsViewModelProtocol {
+    private let utils = PicUtils(baseUrl: PicsApiClient.baseUrl)
     let repository: PicsRepositoryProtocol
-    let pics = Dynamic([Pic]())
+    let pics = Dynamic([ListPicViewDataType]())
 
     init(repository: PicsRepositoryProtocol) {
         self.repository = repository
 
         Task {
-            let result = await repository.getPics(params: PaginationParams(page: 0))
+            let result = await repository.getPics(params: PaginationParams(page: 0, limit: 10))
             switch result {
                 case .success(let pics):
                     process(pics)
@@ -37,7 +38,7 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
 
     private func process(_ pics: [Pic]) {
         DispatchQueue.main.async {
-            self.pics.value = pics
+            self.pics.value = pics.map { ListPicViewData(pic: $0, width: 100) }
         }
     }
 }

@@ -53,7 +53,7 @@ extension ListPicsViewController: UICollectionViewDataSource {
         }
 
         // TODO remove force unwrap
-        cell.setup(imageUrl: URL(string: pic.downloadUrl)!)
+        cell.setup(imageUrl: pic.imageUrl)
 
         return cell
     }

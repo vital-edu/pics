@@ -32,7 +32,7 @@ class PicViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(imageUrl: URL) {
+    func setup(imageUrl: URL?) {
         self.imageUrl = imageUrl
         imageView.kf.setImage(with: imageUrl)
     }

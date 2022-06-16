@@ -9,8 +9,12 @@ import Foundation
 import Alamofire
 
 struct PicsApiClient: ApiClientProtocol {
-    let baseUrl = "https://picsum.photos"
+    static let baseUrl = "https://picsum.photos"
     let session: Session
+
+    var baseUrl: String {
+        return Self.baseUrl
+    }
 
     init(session: Session = Session()) {
         self.session = session
