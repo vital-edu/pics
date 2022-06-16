@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ListPicsViewModelProtocol: AnyObject {
     var repository: PicsRepositoryProtocol { get }
@@ -14,15 +15,20 @@ protocol ListPicsViewModelProtocol: AnyObject {
     var pics: Dynamic<[ListPicViewDataType]> { get }
 
     // MARK: events
+    func showPic(id: String, from viewController: UIViewController)
 }
 
 class ListPicsViewModel: ListPicsViewModelProtocol {
     private let utils = PicUtils(baseUrl: PicsApiClient.baseUrl)
+
     let repository: PicsRepositoryProtocol
     let pics = Dynamic([ListPicViewDataType]())
 
-    init(repository: PicsRepositoryProtocol) {
+    weak var delegate: ListPicsViewModelDelegate?
+
+    init(repository: PicsRepositoryProtocol, delegate: ListPicsViewModelDelegate) {
         self.repository = repository
+        self.delegate = delegate
 
         Task {
             let result = await repository.getPics(params: PaginationParams(page: 0, limit: 15))
@@ -36,9 +42,17 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
         }
     }
 
+    func showPic(id: String, from viewController: UIViewController) {
+        delegate?.showPic(id: id, from: viewController)
+    }
+
     private func process(_ pics: [Pic]) {
         DispatchQueue.main.async {
             self.pics.value = pics.map { ListPicViewData(pic: $0, width: 100) }
         }
     }
+}
+
+protocol ListPicsViewModelDelegate: AnyObject {
+    func showPic(id: String, from viewController: UIViewController)
 }

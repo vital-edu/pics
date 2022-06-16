@@ -8,6 +8,7 @@
 import UIKit
 
 protocol ListPicViewDataType {
+    var id: String { get }
     var imageUrl: URL? { get }
     var size: CGSize { get }
 }
@@ -17,6 +18,7 @@ struct ListPicViewData: ListPicViewDataType {
     let pic: Pic
     let imageUrl: URL?
     let size: CGSize
+    var id: String { pic.id }
 
     init(pic: Pic, width: Int) {
         self.pic = pic
