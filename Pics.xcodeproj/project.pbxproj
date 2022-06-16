@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E87A38EE285BAFAB007AC2C6 /* PicsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A38ED285BAFAB007AC2C6 /* PicsRepository.swift */; };
 		E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C182857DFA2001908DC /* AppDelegate.swift */; };
 		E8C98C1B2857DFA2001908DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C1A2857DFA2001908DC /* SceneDelegate.swift */; };
 		E8C98C1D2857DFA2001908DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C1C2857DFA2001908DC /* ViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E87A38ED285BAFAB007AC2C6 /* PicsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsRepository.swift; sourceTree = "<group>"; };
 		E8C98C152857DFA2001908DC /* Pics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C98C182857DFA2001908DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8C98C1A2857DFA2001908DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				E8C98C402858073F001908DC /* PicsEndpoint.swift */,
 				E8C98C4B28582186001908DC /* PicsApiClient.swift */,
 				E8C98C362858054C001908DC /* PicsRemoteDataSource.swift */,
+				E87A38ED285BAFAB007AC2C6 /* PicsRepository.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E87A38EE285BAFAB007AC2C6 /* PicsRepository.swift in Sources */,
 				E8C98C3D28580692001908DC /* Pic.swift in Sources */,
 				E8C98C412858073F001908DC /* PicsEndpoint.swift in Sources */,
 				E8C98C2E2857E0A8001908DC /* AppCordinator.swift in Sources */,
