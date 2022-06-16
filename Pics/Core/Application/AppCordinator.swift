@@ -21,10 +21,12 @@ class AppCoordinator: Coordinator {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 
-        let listPicsCoordinator = ListPicsCoordinator(rootViewController: navigationController)
-        addChild(listPicsCoordinator)
-        listPicsCoordinator.start()
+        let coordinator = ListPicsCoordinator(rootViewController: navigationController)
+        addChild(coordinator)
+        coordinator.start()
+        coordinator.finish = { [weak self, weak coordinator] in
+            guard let self = self, let coordinator = coordinator else { return }
+            self.removeChild(coordinator)
+        }
     }
-
-    override func finish() {}
 }

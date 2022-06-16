@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ListPicsViewController: UIViewController {
+class ListPicsViewController: BaseViewController {
     var viewModel: ListPicsViewModelProtocol?
 
     private lazy var collectionView: UICollectionView = {

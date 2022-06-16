@@ -32,6 +32,9 @@
 		E8E2A649285BD4B30009744E /* PicUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A648285BD4B30009744E /* PicUtils.swift */; };
 		E8E2A64D285BDDCA0009744E /* ShowPicCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A64C285BDDCA0009744E /* ShowPicCoordinator.swift */; };
 		E8E2A650285BDE150009744E /* ShowPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A64F285BDE150009744E /* ShowPicViewController.swift */; };
+		E8E2A653285BE5610009744E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A652285BE5610009744E /* BaseViewController.swift */; };
+		E8E2A656285BE5C10009744E /* Deinitcallable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A655285BE5C10009744E /* Deinitcallable.swift */; };
+		E8E2A658285BE5DF0009744E /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A657285BE5DF0009744E /* CoordinatorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		E8E2A648285BD4B30009744E /* PicUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicUtils.swift; sourceTree = "<group>"; };
 		E8E2A64C285BDDCA0009744E /* ShowPicCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicCoordinator.swift; sourceTree = "<group>"; };
 		E8E2A64F285BDE150009744E /* ShowPicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicViewController.swift; sourceTree = "<group>"; };
+		E8E2A652285BE5610009744E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		E8E2A655285BE5C10009744E /* Deinitcallable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deinitcallable.swift; sourceTree = "<group>"; };
+		E8E2A657285BE5DF0009744E /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				E87A38F2285BB1DC007AC2C6 /* Dynamic.swift */,
+				E8E2A655285BE5C10009744E /* Deinitcallable.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -106,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				E87A38F5285BB7BC007AC2C6 /* ViewConfiguration.swift */,
+				E8E2A652285BE5610009744E /* BaseViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -144,10 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				E87A38F1285BB1CB007AC2C6 /* Shared */,
+				E8E2A654285BE5880009744E /* Application */,
 				E8C98C4A28582163001908DC /* Infrastructure */,
 				E87A38F4285BB7AA007AC2C6 /* Presentation */,
-				E8C98C2D2857E0A8001908DC /* AppCordinator.swift */,
-				E8C98C302857E0E6001908DC /* Coordinator.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -242,6 +249,16 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		E8E2A654285BE5880009744E /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E8E2A657285BE5DF0009744E /* CoordinatorProtocol.swift */,
+				E8C98C302857E0E6001908DC /* Coordinator.swift */,
+				E8C98C2D2857E0A8001908DC /* AppCordinator.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -322,6 +339,7 @@
 			files = (
 				E87A38EE285BAFAB007AC2C6 /* PicsRepository.swift in Sources */,
 				E87A38F8285BBB0D007AC2C6 /* PicViewCell.swift in Sources */,
+				E8E2A658285BE5DF0009744E /* CoordinatorProtocol.swift in Sources */,
 				E8C98C3D28580692001908DC /* Pic.swift in Sources */,
 				E8C98C412858073F001908DC /* PicsEndpoint.swift in Sources */,
 				E87A38F0285BB179007AC2C6 /* ListPicsViewModel.swift in Sources */,
@@ -333,6 +351,8 @@
 				E8C98C312857E0E6001908DC /* Coordinator.swift in Sources */,
 				E8C98C372858054C001908DC /* PicsRemoteDataSource.swift in Sources */,
 				E8E2A64D285BDDCA0009744E /* ShowPicCoordinator.swift in Sources */,
+				E8E2A656285BE5C10009744E /* Deinitcallable.swift in Sources */,
+				E8E2A653285BE5610009744E /* BaseViewController.swift in Sources */,
 				E8E2A650285BDE150009744E /* ShowPicViewController.swift in Sources */,
 				E87A38E9285BAB07007AC2C6 /* ListPicsCoordinator.swift in Sources */,
 				E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */,

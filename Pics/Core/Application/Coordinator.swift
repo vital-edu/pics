@@ -7,14 +7,13 @@
 
 import Foundation
 
-class Coordinator: NSObject {
+class Coordinator: NSObject, CoordinatorProtocol {
+    var finish: (() -> Void)?
+    weak var deallocallable: Deinitcallable?
+
     private(set) var childCoordinators = [Coordinator]()
 
     func start() {
-        assertionFailure("This method needs to be overriden by concrete subclass.")
-    }
-
-    func finish() {
         assertionFailure("This method needs to be overriden by concrete subclass.")
     }
 
@@ -27,10 +26,6 @@ class Coordinator: NSObject {
             return
         }
         childCoordinators.remove(at: index)
-    }
-
-    func removeAllChildren<T: Coordinator>(of type: T.Type) {
-        childCoordinators = childCoordinators.filter { $0 is T == false }
     }
 
     func removeAllChildren() {

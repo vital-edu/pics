@@ -22,10 +22,9 @@ class ListPicsCoordinator: Coordinator {
         let viewModel = ListPicsViewModel(repository: repository, delegate: self)
         let viewController = ListPicsViewController()
         viewController.viewModel = viewModel
-        rootViewController?.setViewControllers([viewController], animated: false)
-    }
 
-    override func finish() {
+        setDeallocallable(with: viewController)
+        rootViewController?.setViewControllers([viewController], animated: false)
     }
 }
 
@@ -35,5 +34,9 @@ extension ListPicsCoordinator: ListPicsViewModelDelegate {
         addChild(coordinator)
 
         coordinator.start()
+        coordinator.finish = { [weak self, weak coordinator] in
+            guard let self = self, let coordinator = coordinator else { return }
+            self.removeChild(coordinator)
+        }
     }
 }

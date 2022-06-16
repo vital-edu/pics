@@ -7,9 +7,10 @@
 
 import UIKit
 
-class ShowPicViewController: UIViewController {
+class ShowPicViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .red
     }
 }

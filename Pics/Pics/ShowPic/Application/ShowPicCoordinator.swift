@@ -18,9 +18,8 @@ class ShowPicCoordinator: Coordinator {
 
     override func start() {
         let viewController = ShowPicViewController()
-        rootViewController?.pushViewController(viewController, animated: true)
-    }
 
-    override func finish() {
+        setDeallocallable(with: viewController)
+        rootViewController?.pushViewController(viewController, animated: true)
     }
 }
