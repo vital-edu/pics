@@ -14,6 +14,9 @@
 		E8C98C252857DFA5001908DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C98C232857DFA5001908DC /* LaunchScreen.storyboard */; };
 		E8C98C2E2857E0A8001908DC /* AppCordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C2D2857E0A8001908DC /* AppCordinator.swift */; };
 		E8C98C312857E0E6001908DC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C302857E0E6001908DC /* Coordinator.swift */; };
+		E8C98C372858054C001908DC /* PicsRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C362858054C001908DC /* PicsRemoteDataSource.swift */; };
+		E8C98C39285805FC001908DC /* PicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C38285805FC001908DC /* PicsDataSource.swift */; };
+		E8C98C3D28580692001908DC /* Pic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C3C28580692001908DC /* Pic.swift */; };
 		E8C98C412858073F001908DC /* PicsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C402858073F001908DC /* PicsEndpoint.swift */; };
 		E8C98C472858209F001908DC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E8C98C462858209F001908DC /* Alamofire */; };
 		E8C98C492858212B001908DC /* ApiClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C482858212B001908DC /* ApiClientProtocol.swift */; };
@@ -30,6 +33,9 @@
 		E8C98C262857DFA5001908DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8C98C2D2857E0A8001908DC /* AppCordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCordinator.swift; sourceTree = "<group>"; };
 		E8C98C302857E0E6001908DC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		E8C98C362858054C001908DC /* PicsRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsRemoteDataSource.swift; sourceTree = "<group>"; };
+		E8C98C38285805FC001908DC /* PicsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsDataSource.swift; sourceTree = "<group>"; };
+		E8C98C3C28580692001908DC /* Pic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pic.swift; sourceTree = "<group>"; };
 		E8C98C402858073F001908DC /* PicsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsEndpoint.swift; sourceTree = "<group>"; };
 		E8C98C482858212B001908DC /* ApiClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientProtocol.swift; sourceTree = "<group>"; };
 		E8C98C4B28582186001908DC /* PicsApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsApiClient.swift; sourceTree = "<group>"; };
@@ -47,6 +53,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E87A38E7285BAAE7007AC2C6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E87A38E8285BAB07007AC2C6 /* ListPicsCoordinator.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E87A38EA285BABA4007AC2C6 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E87A38EB285BABC1007AC2C6 /* ListPicsViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		E8C98C0C2857DFA1001908DC = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				E8C98C2C2857E099001908DC /* Core */,
+				E8C98C32285804E6001908DC /* Pics */,
 				E8C98C182857DFA2001908DC /* AppDelegate.swift */,
 				E8C98C1A2857DFA2001908DC /* SceneDelegate.swift */,
 				E8C98C1C2857DFA2001908DC /* ViewController.swift */,
@@ -91,23 +114,44 @@
 			isa = PBXGroup;
 			children = (
 				E8C98C3A28580642001908DC /* Core */,
+				E8C98C33285804FB001908DC /* ListPics */,
 			);
 			path = Pics;
+			sourceTree = "<group>";
+		};
+		E8C98C33285804FB001908DC /* ListPics */ = {
+			isa = PBXGroup;
+			children = (
+				E87A38E7285BAAE7007AC2C6 /* Application */,
+				E87A38EA285BABA4007AC2C6 /* Presentation */,
+			);
+			path = ListPics;
 			sourceTree = "<group>";
 		};
 		E8C98C3A28580642001908DC /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				E8C98C3F2858072F001908DC /* Infrastructure */,
+				E8C98C3B28580671001908DC /* Domain */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		E8C98C3B28580671001908DC /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				E8C98C3C28580692001908DC /* Pic.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		E8C98C3F2858072F001908DC /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				E8C98C38285805FC001908DC /* PicsDataSource.swift */,
 				E8C98C402858073F001908DC /* PicsEndpoint.swift */,
 				E8C98C4B28582186001908DC /* PicsApiClient.swift */,
+				E8C98C362858054C001908DC /* PicsRemoteDataSource.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -196,13 +240,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8C98C3D28580692001908DC /* Pic.swift in Sources */,
 				E8C98C412858073F001908DC /* PicsEndpoint.swift in Sources */,
 				E8C98C2E2857E0A8001908DC /* AppCordinator.swift in Sources */,
 				E8C98C4C28582186001908DC /* PicsApiClient.swift in Sources */,
 				E8C98C1D2857DFA2001908DC /* ViewController.swift in Sources */,
 				E8C98C312857E0E6001908DC /* Coordinator.swift in Sources */,
+				E8C98C372858054C001908DC /* PicsRemoteDataSource.swift in Sources */,
+				E87A38E9285BAB07007AC2C6 /* ListPicsCoordinator.swift in Sources */,
 				E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */,
 				E8C98C1B2857DFA2001908DC /* SceneDelegate.swift in Sources */,
+				E8C98C39285805FC001908DC /* PicsDataSource.swift in Sources */,
 				E8C98C492858212B001908DC /* ApiClientProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
