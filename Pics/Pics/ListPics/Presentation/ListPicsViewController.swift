@@ -66,7 +66,7 @@ extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let id = viewModel?.pics.value[indexPath.item].id else { return }
-        viewModel?.showPic(id: id, from: self)
+        guard let pic = viewModel?.pics.value[indexPath.item] else { return }
+        viewModel?.show(pic: pic)
     }
 }

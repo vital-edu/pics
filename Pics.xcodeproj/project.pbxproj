@@ -35,6 +35,11 @@
 		E8E2A653285BE5610009744E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A652285BE5610009744E /* BaseViewController.swift */; };
 		E8E2A656285BE5C10009744E /* Deinitcallable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A655285BE5C10009744E /* Deinitcallable.swift */; };
 		E8E2A658285BE5DF0009744E /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A657285BE5DF0009744E /* CoordinatorProtocol.swift */; };
+		E8E2A65A285BEDB50009744E /* ShowPicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A659285BEDB50009744E /* ShowPicViewModel.swift */; };
+		E8E2A65D285BEF1A0009744E /* QueryParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A65C285BEF1A0009744E /* QueryParams.swift */; };
+		E8E2A65F285BEF2B0009744E /* PicsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A65E285BEF2B0009744E /* PicsParams.swift */; };
+		E8E2A661285BEF430009744E /* PaginationParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A660285BEF430009744E /* PaginationParams.swift */; };
+		E8E2A663285C072D0009744E /* ShowPicViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A662285C072D0009744E /* ShowPicViewData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +71,11 @@
 		E8E2A652285BE5610009744E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E8E2A655285BE5C10009744E /* Deinitcallable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deinitcallable.swift; sourceTree = "<group>"; };
 		E8E2A657285BE5DF0009744E /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		E8E2A659285BEDB50009744E /* ShowPicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicViewModel.swift; sourceTree = "<group>"; };
+		E8E2A65C285BEF1A0009744E /* QueryParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryParams.swift; sourceTree = "<group>"; };
+		E8E2A65E285BEF2B0009744E /* PicsParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsParams.swift; sourceTree = "<group>"; };
+		E8E2A660285BEF430009744E /* PaginationParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationParams.swift; sourceTree = "<group>"; };
+		E8E2A662285C072D0009744E /* ShowPicViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicViewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +214,8 @@
 				E8C98C4B28582186001908DC /* PicsApiClient.swift */,
 				E8C98C362858054C001908DC /* PicsRemoteDataSource.swift */,
 				E87A38ED285BAFAB007AC2C6 /* PicsRepository.swift */,
+				E8E2A65E285BEF2B0009744E /* PicsParams.swift */,
+				E8E2A660285BEF430009744E /* PaginationParams.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -212,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				E8C98C482858212B001908DC /* ApiClientProtocol.swift */,
+				E8E2A65C285BEF1A0009744E /* QueryParams.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -237,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				E8E2A64C285BDDCA0009744E /* ShowPicCoordinator.swift */,
+				E8E2A659285BEDB50009744E /* ShowPicViewModel.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -245,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				E8E2A64F285BDE150009744E /* ShowPicViewController.swift */,
+				E8E2A662285C072D0009744E /* ShowPicViewData.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -352,13 +367,18 @@
 				E8C98C372858054C001908DC /* PicsRemoteDataSource.swift in Sources */,
 				E8E2A64D285BDDCA0009744E /* ShowPicCoordinator.swift in Sources */,
 				E8E2A656285BE5C10009744E /* Deinitcallable.swift in Sources */,
+				E8E2A661285BEF430009744E /* PaginationParams.swift in Sources */,
 				E8E2A653285BE5610009744E /* BaseViewController.swift in Sources */,
 				E8E2A650285BDE150009744E /* ShowPicViewController.swift in Sources */,
 				E87A38E9285BAB07007AC2C6 /* ListPicsCoordinator.swift in Sources */,
+				E8E2A65A285BEDB50009744E /* ShowPicViewModel.swift in Sources */,
 				E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */,
 				E8C98C1B2857DFA2001908DC /* SceneDelegate.swift in Sources */,
 				E87A38F3285BB1DC007AC2C6 /* Dynamic.swift in Sources */,
+				E8E2A65D285BEF1A0009744E /* QueryParams.swift in Sources */,
 				E8C98C39285805FC001908DC /* PicsDataSource.swift in Sources */,
+				E8E2A65F285BEF2B0009744E /* PicsParams.swift in Sources */,
+				E8E2A663285C072D0009744E /* ShowPicViewData.swift in Sources */,
 				E8C98C492858212B001908DC /* ApiClientProtocol.swift in Sources */,
 				E8E2A646285BD40F0009744E /* ListPicViewData.swift in Sources */,
 			);

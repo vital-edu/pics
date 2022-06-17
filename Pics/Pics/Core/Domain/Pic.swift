@@ -10,8 +10,8 @@ import Foundation
 struct Pic: Decodable {
     let id: String
     let author: String
-    let width: Double
-    let height: Double
+    let width: Int
+    let height: Int
     let url: String
     let downloadUrl: String
 

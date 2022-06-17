@@ -15,7 +15,7 @@ protocol ListPicsViewModelProtocol: AnyObject {
     var pics: Dynamic<[ListPicViewDataType]> { get }
 
     // MARK: events
-    func showPic(id: String, from viewController: UIViewController)
+    func show(pic: ListPicViewDataType)
 }
 
 class ListPicsViewModel: ListPicsViewModelProtocol {
@@ -42,8 +42,9 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
         }
     }
 
-    func showPic(id: String, from viewController: UIViewController) {
-        delegate?.showPic(id: id, from: viewController)
+    func show(pic: ListPicViewDataType) {
+        guard let viewData = pic as? ListPicViewData else { return }
+        delegate?.show(pic: viewData.pic)
     }
 
     private func process(_ pics: [Pic]) {
@@ -54,5 +55,5 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
 }
 
 protocol ListPicsViewModelDelegate: AnyObject {
-    func showPic(id: String, from viewController: UIViewController)
+    func show(pic: Pic)
 }
