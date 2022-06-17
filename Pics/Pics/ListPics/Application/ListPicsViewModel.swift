@@ -13,16 +13,21 @@ protocol ListPicsViewModelProtocol: AnyObject {
 
     // MARK: properties
     var pics: Dynamic<[ListPicViewDataType]> { get }
+    var cellSize: CGSize { get }
 
     // MARK: events
     func show(pic: ListPicViewDataType)
+    func getNextPage()
 }
 
 class ListPicsViewModel: ListPicsViewModelProtocol {
     private let utils = PicUtils(baseUrl: PicsApiClient.baseUrl)
+    private var isLoadingNextPage = false
+    private var currentPage = 0;
 
     let repository: PicsRepositoryProtocol
     let pics = Dynamic([ListPicViewDataType]())
+    let cellSize = CGSize(width: 100, height: 100)
 
     weak var delegate: ListPicsViewModelDelegate?
 
@@ -31,14 +36,7 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
         self.delegate = delegate
 
         Task {
-            let result = await repository.getPics(params: PaginationParams(page: 0, limit: 15))
-            switch result {
-                case .success(let pics):
-                    process(pics)
-                case .failure(let error):
-                    // TODO: deal with error
-                    break
-            }
+            getNextPage()
         }
     }
 
@@ -47,9 +45,29 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
         delegate?.show(pic: viewData.pic)
     }
 
-    private func process(_ pics: [Pic]) {
+    func getNextPage() {
+        if isLoadingNextPage { return }
+        isLoadingNextPage = true
+
+        Task {
+            let page = currentPage + 1
+            let result = await repository.getPics(params: PaginationParams(page: page, limit: 15))
+            switch result {
+                case .success(let pics):
+                    process(pics, page: page)
+                case .failure(let error):
+                    // TODO: deal with error
+                    break
+            }
+        }
+    }
+
+    private func process(_ pics: [Pic], page: Int) {
         DispatchQueue.main.async {
-            self.pics.value = pics.map { ListPicViewData(pic: $0, width: 100) }
+            self.currentPage = page
+            self.pics.value.append(contentsOf: pics.map { ListPicViewData(pic: $0, width: Int(self.cellSize.width))
+            })
+            self.isLoadingNextPage = false
         }
     }
 }

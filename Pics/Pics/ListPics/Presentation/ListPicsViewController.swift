@@ -45,28 +45,46 @@ extension ListPicsViewController: ViewConfiguration {
 
 extension ListPicsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.pics.value.count ?? 0
+        let nextLoadingCells = 15
+        return (viewModel?.pics.value.count ?? 0) + nextLoadingCells
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PicViewCell.identifer, for: indexPath) as? PicViewCell, let pic = viewModel?.pics.value[indexPath.item] else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PicViewCell.identifer, for: indexPath) as? PicViewCell else {
             preconditionFailure("Failed to load collection view cell")
         }
 
-        // TODO remove force unwrap
+        guard let pic = viewModel?.pics.value[safe: indexPath.item] else {
+            cell.setup(imageUrl: nil)
+            return cell
+        }
+
         cell.setup(imageUrl: pic.imageUrl)
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else { return }
+        if indexPath.item < viewModel.pics.value.count {
+            return
+        }
+
+        Task {
+            viewModel.getNextPage()
+        }
     }
 }
 
 extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return viewModel?.pics.value[indexPath.item].size ?? .zero
+        return viewModel?.cellSize ?? .zero
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let pic = viewModel?.pics.value[indexPath.item] else { return }
+        guard let pic = viewModel?.pics.value[safe: indexPath.item] else {
+            return
+        }
         viewModel?.show(pic: pic)
     }
 }

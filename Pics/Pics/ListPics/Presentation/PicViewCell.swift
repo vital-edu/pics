@@ -18,6 +18,7 @@ class PicViewCell: UICollectionViewCell {
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return imageView
     }()
+
     private var imageUrl: URL?
 
     override init(frame: CGRect) {
@@ -34,7 +35,14 @@ class PicViewCell: UICollectionViewCell {
 
     func setup(imageUrl: URL?) {
         self.imageUrl = imageUrl
-        imageView.kf.setImage(with: imageUrl)
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(with: imageUrl) { result in
+            if case let .failure(error) = result,
+               case let .imageSettingError(reason) = error,
+               case .emptySource = reason {
+                    self.imageView.kf.indicator?.startAnimatingView()
+            }
+        }
     }
 
     override func prepareForReuse() {
@@ -49,6 +57,5 @@ extension PicViewCell: ViewConfiguration {
     }
 
     func setupConstraints() {
-
     }
 }
