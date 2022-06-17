@@ -5,26 +5,44 @@
 //  Created by Eduardo Vital Alencar Cunha on 16/06/2022.
 //
 
-import Foundation
+import UIKit
 
 protocol ShowPicViewDataType {
+    var id: NSAttributedString { get }
     var title: String { get }
-    var imageUrl: URL? { get }
+    var author: NSAttributedString { get }
+    var size: NSAttributedString { get }
+    var url: URL? { get }
+    var downloadUrl: NSAttributedString { get }
     var selectedEffect: Int { get }
 }
 
 struct ShowPicViewData: ShowPicViewDataType {
     let pic: Pic
-    let imageUrl: URL?
+    let url: URL?
     let utils = PicUtils(baseUrl: PicsApiClient.baseUrl)
     let selectedEffect: Int
+
+    let id: NSAttributedString
+    let author: NSAttributedString
+    let size: NSAttributedString
+    let downloadUrl: NSAttributedString
 
     var title: String { pic.author }
 
     init(pic: Pic, width: Int, height: Int, effect: PicEffect = .normal) {
         self.pic = pic
         self.selectedEffect = effect.rawValue
-        self.imageUrl = utils.getPicUrl(
+        self.id = NSMutableAttributedString().bold("ID: ").normal(pic.id)
+        self.author = NSMutableAttributedString().bold("Author: ").normal(pic.id)
+        self.size = NSMutableAttributedString()
+            .bold("Size: ")
+            .normal("\(pic.width)x\(pic.height)")
+        self.downloadUrl = NSMutableAttributedString()
+            .bold("Download URL: ")
+            .normal(pic.downloadUrl)
+
+        self.url = utils.getPicUrl(
             imageId: pic.id,
             width: width,
             height: height,

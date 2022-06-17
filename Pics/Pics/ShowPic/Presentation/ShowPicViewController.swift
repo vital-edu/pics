@@ -15,6 +15,7 @@ class ShowPicViewController: BaseViewController {
         static let rightMargin = 4.0
 
         static let spacing = 8.0
+        static let minimumImageHeight = 100.0
     }
 
     var viewModel: ShowPicViewModelProtocol?
@@ -27,28 +28,16 @@ class ShowPicViewController: BaseViewController {
         return view
     }()
 
+    private let idLabel = UILabel()
+    private let authorLabel = UILabel()
+    private let sizeLabel = UILabel()
+    private let urlLabel = UILabel()
+
     private lazy var imageInfoStackView: UIStackView = {
-        let idLabel = UILabel()
-        idLabel.text = "0"
-
-        let authorLabel = UILabel()
-        authorLabel.text = "Alejandro Escamilla"
-
-        let widthLabel = UILabel()
-        widthLabel.text = "5616"
-
-        let heightLabel = UILabel()
-        heightLabel.text = "2122"
-
-        let urlLabel = UILabel()
-        urlLabel.text = "https://unsplash.com/..."
-
         let view = UIStackView(arrangedSubviews: [
-            imageView,
             idLabel,
             authorLabel,
-            widthLabel,
-            heightLabel,
+            sizeLabel,
             urlLabel,
         ])
         view.axis = .vertical
@@ -62,11 +51,6 @@ class ShowPicViewController: BaseViewController {
         view.addTarget(self, action: #selector(changeImageEffect), for: .valueChanged)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.apportionsSegmentWidthsByContent = true
-        return view
-    }()
-
-    private let authorLabel: UILabel = {
-        let view = UILabel()
         return view
     }()
 
@@ -100,9 +84,14 @@ extension ShowPicViewController: ViewConfiguration {
             optionsSegmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: ViewMetrics.leftMargin),
             optionsSegmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -ViewMetrics.rightMargin),
 
-            imageInfoStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            imageInfoStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            imageInfoStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            imageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: ViewMetrics.minimumImageHeight),
+
+            imageInfoStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: ViewMetrics.spacing),
+            imageInfoStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: ViewMetrics.leftMargin),
+            imageInfoStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: ViewMetrics.rightMargin),
             imageInfoStackView.bottomAnchor.constraint(lessThanOrEqualTo: scrollView.bottomAnchor),
 
             scrollView.topAnchor.constraint(equalTo: optionsSegmentedControl.safeAreaLayoutGuide.bottomAnchor, constant: ViewMetrics.spacing),
@@ -122,9 +111,15 @@ extension ShowPicViewController: ViewConfiguration {
         }
 
         viewModel.pic.bindAndFire { [weak self] pic in
-            self?.title = pic.title
-            self?.imageView.kf.setImage(with: pic.imageUrl)
-            self?.optionsSegmentedControl.selectedSegmentIndex = pic.selectedEffect
+            guard let self = self else { return }
+
+            self.title = pic.title
+            self.idLabel.attributedText = pic.id
+            self.authorLabel.attributedText = pic.author
+            self.urlLabel.attributedText = pic.downloadUrl
+            self.sizeLabel.attributedText = pic.size
+            self.imageView.kf.setImage(with: pic.url)
+            self.optionsSegmentedControl.selectedSegmentIndex = pic.selectedEffect
         }
     }
 }
