@@ -20,8 +20,39 @@ class ShowPicViewController: BaseViewController {
     var viewModel: ShowPicViewModelProtocol?
 
     private let imageView: UIImageView = {
-        let view = UIImageView()
+        let view = ScaledHeightImageView()
+        view.kf.indicatorType = .activity
         view.contentMode = .scaleAspectFit
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private lazy var imageInfoStackView: UIStackView = {
+        let idLabel = UILabel()
+        idLabel.text = "0"
+
+        let authorLabel = UILabel()
+        authorLabel.text = "Alejandro Escamilla"
+
+        let widthLabel = UILabel()
+        widthLabel.text = "5616"
+
+        let heightLabel = UILabel()
+        heightLabel.text = "2122"
+
+        let urlLabel = UILabel()
+        urlLabel.text = "https://unsplash.com/..."
+
+        let view = UIStackView(arrangedSubviews: [
+            imageView,
+            idLabel,
+            authorLabel,
+            widthLabel,
+            heightLabel,
+            urlLabel,
+        ])
+        view.axis = .vertical
+        view.distribution = .fill
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -39,6 +70,14 @@ class ShowPicViewController: BaseViewController {
         return view
     }()
 
+    private lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.addSubview(imageView)
+        view.addSubview(imageInfoStackView)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     @objc private func changeImageEffect(sender: UISegmentedControl) {
         viewModel?.changeEffect(to: sender.selectedSegmentIndex)
     }
@@ -51,7 +90,7 @@ class ShowPicViewController: BaseViewController {
 
 extension ShowPicViewController: ViewConfiguration {
     func buildViewHierarchy() {
-        view.addSubview(imageView)
+        view.addSubview(scrollView)
         view.addSubview(optionsSegmentedControl)
     }
 
@@ -61,10 +100,15 @@ extension ShowPicViewController: ViewConfiguration {
             optionsSegmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: ViewMetrics.leftMargin),
             optionsSegmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -ViewMetrics.rightMargin),
 
-            imageView.topAnchor.constraint(equalTo: optionsSegmentedControl.safeAreaLayoutGuide.bottomAnchor, constant: ViewMetrics.spacing),
-            imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            imageInfoStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageInfoStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            imageInfoStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            imageInfoStackView.bottomAnchor.constraint(lessThanOrEqualTo: scrollView.bottomAnchor),
+
+            scrollView.topAnchor.constraint(equalTo: optionsSegmentedControl.safeAreaLayoutGuide.bottomAnchor, constant: ViewMetrics.spacing),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
 

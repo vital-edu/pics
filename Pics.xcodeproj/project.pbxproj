@@ -42,6 +42,7 @@
 		E8E2A663285C072D0009744E /* ShowPicViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A662285C072D0009744E /* ShowPicViewData.swift */; };
 		E8E2A666285C0F040009744E /* PicEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A665285C0F040009744E /* PicEffect.swift */; };
 		E8E2A668285C79E80009744E /* Collection+safeBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A667285C79E80009744E /* Collection+safeBounds.swift */; };
+		E8E2A66A285C94D60009744E /* ScaledHeightImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E2A669285C94D60009744E /* ScaledHeightImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		E8E2A662285C072D0009744E /* ShowPicViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicViewData.swift; sourceTree = "<group>"; };
 		E8E2A665285C0F040009744E /* PicEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicEffect.swift; sourceTree = "<group>"; };
 		E8E2A667285C79E80009744E /* Collection+safeBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+safeBounds.swift"; sourceTree = "<group>"; };
+		E8E2A669285C94D60009744E /* ScaledHeightImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledHeightImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			children = (
 				E87A38F5285BB7BC007AC2C6 /* ViewConfiguration.swift */,
 				E8E2A652285BE5610009744E /* BaseViewController.swift */,
+				E8E2A669285C94D60009744E /* ScaledHeightImageView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				E8E2A653285BE5610009744E /* BaseViewController.swift in Sources */,
 				E8E2A650285BDE150009744E /* ShowPicViewController.swift in Sources */,
 				E87A38E9285BAB07007AC2C6 /* ListPicsCoordinator.swift in Sources */,
+				E8E2A66A285C94D60009744E /* ScaledHeightImageView.swift in Sources */,
 				E8E2A65A285BEDB50009744E /* ShowPicViewModel.swift in Sources */,
 				E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */,
 				E8C98C1B2857DFA2001908DC /* SceneDelegate.swift in Sources */,
