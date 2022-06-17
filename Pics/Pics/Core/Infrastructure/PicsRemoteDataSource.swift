@@ -25,7 +25,7 @@ class PicsRemoteDataSource: PicsDataSource {
         return try await apiClient.session.request(url).serializingDecodable([Pic].self).value
     }
 
-    func get(id: String, params: PicsParams) async throws -> UIImage {
+    func get(id: String, params: PicParams) async throws -> UIImage {
         let url = try getUrl(path: PicsEndpoint.show(id).value, queryItems: params.queryItems)
         // TODO: implement correclty
         return UIImage()
