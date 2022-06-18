@@ -7,6 +7,8 @@
 
 import Kingfisher
 import UIKit
+import Photos
+import CloudKit
 
 class ShowPicViewController: BaseViewController {
     private struct ViewMetrics {
@@ -60,6 +62,27 @@ class ShowPicViewController: BaseViewController {
         view.addSubview(imageInfoStackView)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+
+
+    }()
+
+    private lazy var toolbar: UIToolbar = {
+        let toolbar = UIToolbar(
+            frame: CGRect(
+                x: .zero,
+                y: .zero,
+                width: self.view.frame.width,
+                height: 35
+            )
+        )
+        toolbar.setItems([
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "icloud.and.arrow.down"), style: .plain, target: self, action: #selector(saveImage)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+        ], animated: false)
+        toolbar.sizeToFit()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        return toolbar
     }()
 
     @objc private func changeImageEffect(sender: UISegmentedControl) {
@@ -76,6 +99,7 @@ extension ShowPicViewController: ViewConfiguration {
     func buildViewHierarchy() {
         view.addSubview(scrollView)
         view.addSubview(optionsSegmentedControl)
+        view.addSubview(toolbar)
     }
 
     func setupConstraints() {
@@ -95,9 +119,13 @@ extension ShowPicViewController: ViewConfiguration {
             imageInfoStackView.bottomAnchor.constraint(lessThanOrEqualTo: scrollView.bottomAnchor),
 
             scrollView.topAnchor.constraint(equalTo: optionsSegmentedControl.safeAreaLayoutGuide.bottomAnchor, constant: ViewMetrics.spacing),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
             scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            toolbar.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 
@@ -121,5 +149,63 @@ extension ShowPicViewController: ViewConfiguration {
             self.imageView.kf.setImage(with: pic.url)
             self.optionsSegmentedControl.selectedSegmentIndex = pic.selectedEffect
         }
+    }
+
+    @objc private func saveImage() {
+        guard let image = imageView.image else { return }
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved), nil)
+    }
+
+    @objc private func imageSaved(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+
+        let title: String
+        let message: String?
+        let action: UIAlertAction
+
+        if error != nil {
+            title = "Error"
+            if isAuthorizedToSavePhoto() {
+                message = "Unknown error. Try it again later."
+                action = UIAlertAction(title: "OK", style: .default)
+            } else {
+                message = "Permission to save photo denied. Change app permissions in Settings."
+                action = UIAlertAction(
+                    title: "Open Settings",
+                    style: .default,
+                    handler: { [weak self] _ in
+                        self?.openPrivacySettings()
+                    }
+                )
+            }
+        } else {
+            title = "Success"
+            message = "Image saved on photo library"
+            action = UIAlertAction(title: "OK", style: .default)
+        }
+
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+
+    private func isAuthorizedToSavePhoto() -> Bool {
+        if #available(iOS 14, *) {
+            return PHPhotoLibrary.authorizationStatus(for: .addOnly) == .authorized
+        } else {
+            return PHPhotoLibrary.authorizationStatus() == .authorized
+        }
+    }
+
+    @objc func openPrivacySettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString),
+              UIApplication.shared.canOpenURL(url) else {
+            return
+        }
+
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
