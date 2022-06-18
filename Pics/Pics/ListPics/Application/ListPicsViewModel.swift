@@ -71,7 +71,7 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
             switch result {
                 case .success(let pics):
                     process(pics, page: page)
-                case .failure(let error):
+                case .failure(_):
                     // TODO: deal with error
                     break
             }

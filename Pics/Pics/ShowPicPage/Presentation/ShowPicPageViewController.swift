@@ -14,29 +14,37 @@ class ShowPicPageViewController: BaseViewController {
         let viewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         viewController.dataSource = self
         viewController.delegate = self
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
 
         return viewController
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        buildLayout()
+    }
+}
 
+extension ShowPicPageViewController: ViewConfiguration {
+    func buildViewHierarchy() {
         addChild(pageViewController)
         self.view.addSubview(pageViewController.view)
+    }
 
-        if let currentPage = viewModel?.currentPage() {
-            pageViewController.setViewControllers([currentPage], direction: .forward, animated: false)
-            navigationItem.titleView = currentPage.navigationItem.titleView
-        }
-
-        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
-
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             pageViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
             pageViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+
+    func configureViews() {
+        view.backgroundColor = .systemBackground
+        guard let currentPage = viewModel?.currentPage() else { return }
+        pageViewController.setViewControllers([currentPage], direction: .forward, animated: false)
+        navigationItem.titleView = currentPage.navigationItem.titleView
     }
 }
 
