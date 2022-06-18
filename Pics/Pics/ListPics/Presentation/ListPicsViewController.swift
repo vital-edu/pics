@@ -9,6 +9,7 @@ import UIKit
 
 class ListPicsViewController: BaseViewController {
     var viewModel: ListPicsViewModelProtocol?
+    private let spacing = 2.0
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -79,7 +80,9 @@ extension ListPicsViewController: UICollectionViewDataSource {
 
 extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.size.width / CGFloat(viewModel?.columns ?? 1)
+        let columns = CGFloat(viewModel?.columns ?? 1)
+        let availableWidth = UIScreen.main.bounds.size.width - (spacing * (columns + 2))
+        let width = availableWidth / CGFloat(columns)
         return CGSize(width: width, height: width)
     }
 
@@ -91,14 +94,14 @@ extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .zero
+        return UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return .zero
+        return spacing
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return .zero
+        return spacing
     }
 }
