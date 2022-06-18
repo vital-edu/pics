@@ -15,6 +15,7 @@
 		E87A38F6285BB7BC007AC2C6 /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A38F5285BB7BC007AC2C6 /* ViewConfiguration.swift */; };
 		E87A38F8285BBB0D007AC2C6 /* PicViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A38F7285BBB0D007AC2C6 /* PicViewCell.swift */; };
 		E87A38FB285BBCA1007AC2C6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E87A38FA285BBCA1007AC2C6 /* Kingfisher */; };
+		E88ED5BF285E1D1A00F231AC /* PicPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED5BE285E1D1A00F231AC /* PicPreviewViewController.swift */; };
 		E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C182857DFA2001908DC /* AppDelegate.swift */; };
 		E8C98C1B2857DFA2001908DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C1A2857DFA2001908DC /* SceneDelegate.swift */; };
 		E8C98C222857DFA5001908DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C98C212857DFA5001908DC /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		E87A38F2285BB1DC007AC2C6 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		E87A38F5285BB7BC007AC2C6 /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
 		E87A38F7285BBB0D007AC2C6 /* PicViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicViewCell.swift; sourceTree = "<group>"; };
+		E88ED5BE285E1D1A00F231AC /* PicPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicPreviewViewController.swift; sourceTree = "<group>"; };
 		E8C98C152857DFA2001908DC /* Pics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C98C182857DFA2001908DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8C98C1A2857DFA2001908DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				E87A38EB285BABC1007AC2C6 /* ListPicsViewController.swift */,
 				E87A38F7285BBB0D007AC2C6 /* PicViewCell.swift */,
 				E8E2A645285BD40F0009744E /* ListPicViewData.swift */,
+				E88ED5BE285E1D1A00F231AC /* PicPreviewViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				E8E2A65A285BEDB50009744E /* ShowPicViewModel.swift in Sources */,
 				E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */,
 				E8C98C1B2857DFA2001908DC /* SceneDelegate.swift in Sources */,
+				E88ED5BF285E1D1A00F231AC /* PicPreviewViewController.swift in Sources */,
 				E8E2A668285C79E80009744E /* Collection+safeBounds.swift in Sources */,
 				E87A38F3285BB1DC007AC2C6 /* Dynamic.swift in Sources */,
 				E8E2A65D285BEF1A0009744E /* QueryParams.swift in Sources */,

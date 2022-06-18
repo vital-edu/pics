@@ -9,6 +9,7 @@ import UIKit
 
 class ListPicsViewController: BaseViewController {
     var viewModel: ListPicsViewModelProtocol?
+    private(set) var currentCell: PicViewCell?
     private let spacing = 2.0
 
     private lazy var collectionView: UICollectionView = {
@@ -72,6 +73,8 @@ extension ListPicsViewController: UICollectionViewDataSource {
             return
         }
 
+        currentCell = cell as? PicViewCell
+
         Task {
             viewModel.getNextPage()
         }
@@ -103,5 +106,17 @@ extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return spacing
+    }
+
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: {
+                let viewController = PicPreviewViewController()
+                viewController.image = (collectionView.cellForItem(at: indexPath) as? PicViewCell)?.imageView.image
+                return viewController
+            },
+            actionProvider: nil
+        )
     }
 }

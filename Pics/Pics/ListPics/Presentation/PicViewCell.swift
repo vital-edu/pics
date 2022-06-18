@@ -11,11 +11,10 @@ import Kingfisher
 class PicViewCell: UICollectionViewCell {
     static let identifer = "PicCollectionViewCell"
 
-    private lazy var imageView: UIImageView = {
+    private(set) lazy var imageView: UIImageView = {
         let imageView = UIImageView(frame: self.bounds)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return imageView
     }()
 

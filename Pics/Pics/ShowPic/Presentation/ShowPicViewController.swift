@@ -20,7 +20,7 @@ class ShowPicViewController: BaseViewController {
 
     var viewModel: ShowPicViewModelProtocol?
 
-    private let imageView: UIImageView = {
+    private(set) var imageView: UIImageView = {
         let view = ScaledHeightImageView()
         view.kf.indicatorType = .activity
         view.contentMode = .scaleAspectFit
