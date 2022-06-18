@@ -113,8 +113,7 @@ extension ShowPicViewController: ViewConfiguration {
     }
 
     func configureViews() {
-        view.backgroundColor = .white
-
+        view.backgroundColor = .systemBackground
         guard let viewModel = viewModel else { return }
 
         for segment in viewModel.effects {
