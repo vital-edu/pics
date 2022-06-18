@@ -37,6 +37,7 @@ extension ListPicsViewController: ViewConfiguration {
     }
 
     func configureViews() {
+        title = viewModel?.viewTitle
         viewModel?.pics.bindAndFire { [weak self] _ in
             self?.collectionView.reloadData()
         }
@@ -78,7 +79,8 @@ extension ListPicsViewController: UICollectionViewDataSource {
 
 extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return viewModel?.cellSize ?? .zero
+        let width = UIScreen.main.bounds.size.width / CGFloat(viewModel?.columns ?? 1)
+        return CGSize(width: width, height: width)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -86,5 +88,17 @@ extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
             return
         }
         viewModel?.show(pic: pic)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .zero
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return .zero
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return .zero
     }
 }

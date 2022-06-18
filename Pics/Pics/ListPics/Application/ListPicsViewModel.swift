@@ -12,8 +12,9 @@ protocol ListPicsViewModelProtocol: AnyObject {
     var repository: PicsRepositoryProtocol { get }
 
     // MARK: properties
+    var viewTitle: String { get }
     var pics: Dynamic<[ListPicViewDataType]> { get }
-    var cellSize: CGSize { get }
+    var columns: Int { get }
 
     // MARK: events
     func show(pic: ListPicViewDataType)
@@ -22,12 +23,14 @@ protocol ListPicsViewModelProtocol: AnyObject {
 
 class ListPicsViewModel: ListPicsViewModelProtocol {
     private let utils = PicUtils(baseUrl: PicsApiClient.baseUrl)
+    private let imageExtent = 100
     private var isLoadingNextPage = false
     private var currentPage = 0;
 
+    let viewTitle = "Pics"
     let repository: PicsRepositoryProtocol
     let pics = Dynamic([ListPicViewDataType]())
-    let cellSize = CGSize(width: 100, height: 100)
+    let columns = 3
 
     weak var delegate: ListPicsViewModelDelegate?
 
@@ -65,7 +68,7 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
     private func process(_ pics: [Pic], page: Int) {
         DispatchQueue.main.async {
             self.currentPage = page
-            self.pics.value.append(contentsOf: pics.map { ListPicViewData(pic: $0, width: Int(self.cellSize.width))
+            self.pics.value.append(contentsOf: pics.map { ListPicViewData(pic: $0, width: self.imageExtent)
             })
             self.isLoadingNextPage = false
         }
