@@ -13,6 +13,7 @@ class ShowPicPageViewController: BaseViewController {
     private lazy var pageViewController: UIPageViewController = {
         let viewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         viewController.dataSource = self
+        viewController.delegate = self
 
         return viewController
     }()
@@ -25,7 +26,7 @@ class ShowPicPageViewController: BaseViewController {
 
         if let currentPage = viewModel?.currentPage() {
             pageViewController.setViewControllers([currentPage], direction: .forward, animated: false)
-
+            navigationItem.titleView = currentPage.navigationItem.titleView
         }
 
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -36,8 +37,12 @@ class ShowPicPageViewController: BaseViewController {
             pageViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+}
 
-        self.pageViewController.didMove(toParent: self)
+extension ShowPicPageViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        navigationItem.titleView = pendingViewControllers.first?.navigationItem.titleView
     }
 }
 
