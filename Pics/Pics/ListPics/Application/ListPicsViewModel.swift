@@ -11,10 +11,13 @@ import UIKit
 protocol ListPicsViewModelProtocol: AnyObject {
     var repository: PicsRepositoryProtocol { get }
 
-    // MARK: properties
+    // MARK: Source
     var viewTitle: String { get }
-    var pics: Dynamic<[ListPicViewDataType]> { get }
     var columns: Int { get }
+    var dataChanged: Dynamic<Void> { get }
+
+    func numberOfPics() -> Int
+    func pic(at: Int) -> ListPicViewDataType?
 
     // MARK: events
     func show(pic: ListPicViewDataType)
@@ -29,7 +32,8 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
 
     let viewTitle = "Pics"
     let repository: PicsRepositoryProtocol
-    let pics = Dynamic([ListPicViewDataType]())
+    let dataChanged = Dynamic(Void())
+    var pics = [Pic]()
     let columns = 3
 
     weak var delegate: ListPicsViewModelDelegate?
@@ -43,9 +47,18 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
         }
     }
 
+    func pic(at index: Int) -> ListPicViewDataType? {
+        guard let pic = pics[safe: index] else { return nil }
+        return ListPicViewData(pic: pic, width: imageExtent)
+    }
+
+    func numberOfPics() -> Int {
+        return pics.count
+    }
+
     func show(pic: ListPicViewDataType) {
         guard let viewData = pic as? ListPicViewData else { return }
-        delegate?.show(pic: viewData.pic)
+        delegate?.showPicPage(currentPic: viewData.pic, pics: pics)
     }
 
     func getNextPage() {
@@ -68,13 +81,13 @@ class ListPicsViewModel: ListPicsViewModelProtocol {
     private func process(_ pics: [Pic], page: Int) {
         DispatchQueue.main.async {
             self.currentPage = page
-            self.pics.value.append(contentsOf: pics.map { ListPicViewData(pic: $0, width: self.imageExtent)
-            })
+            self.pics.append(contentsOf: pics)
             self.isLoadingNextPage = false
+            self.dataChanged.value = Void()
         }
     }
 }
 
 protocol ListPicsViewModelDelegate: AnyObject {
-    func show(pic: Pic)
+    func showPicPage(currentPic: Pic, pics: [Pic])
 }

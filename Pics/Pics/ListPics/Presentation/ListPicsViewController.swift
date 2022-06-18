@@ -40,7 +40,7 @@ extension ListPicsViewController: ViewConfiguration {
 
     func configureViews() {
         title = viewModel?.viewTitle
-        viewModel?.pics.bindAndFire { [weak self] _ in
+        viewModel?.dataChanged.bindAndFire { [weak self] _ in
             self?.collectionView.reloadData()
         }
     }
@@ -49,7 +49,7 @@ extension ListPicsViewController: ViewConfiguration {
 extension ListPicsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let nextLoadingCells = 15
-        return (viewModel?.pics.value.count ?? 0) + nextLoadingCells
+        return (viewModel?.numberOfPics() ?? 0) + nextLoadingCells
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,7 +57,7 @@ extension ListPicsViewController: UICollectionViewDataSource {
             preconditionFailure("Failed to load collection view cell")
         }
 
-        guard let pic = viewModel?.pics.value[safe: indexPath.item] else {
+        guard let pic = viewModel?.pic(at: indexPath.item) else {
             cell.setup(imageUrl: nil)
             return cell
         }
@@ -69,7 +69,7 @@ extension ListPicsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let viewModel = viewModel else { return }
-        if indexPath.item < viewModel.pics.value.count {
+        if indexPath.item < viewModel.numberOfPics() {
             return
         }
 
@@ -91,7 +91,7 @@ extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let pic = viewModel?.pics.value[safe: indexPath.item] else {
+        guard let pic = viewModel?.pic(at: indexPath.item) else {
             return
         }
         viewModel?.show(pic: pic)

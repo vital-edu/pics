@@ -29,8 +29,8 @@ class ListPicsCoordinator: Coordinator {
 }
 
 extension ListPicsCoordinator: ListPicsViewModelDelegate {
-    func show(pic: Pic) {
-        let coordinator = ShowPicCoordinator(rootViewController: rootViewController, pic: pic)
+    func showPicPage(currentPic: Pic, pics: [Pic]) {
+        let coordinator = ShowPicPageCoordinator(rootViewController: rootViewController, currentPic: currentPic, pics: pics)
         addChild(coordinator)
 
         coordinator.start()
