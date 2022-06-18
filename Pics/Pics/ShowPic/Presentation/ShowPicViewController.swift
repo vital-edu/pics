@@ -144,7 +144,22 @@ extension ShowPicViewController: ViewConfiguration {
 
     @objc private func saveImage() {
         guard let image = imageView.image else { return }
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved), nil)
+
+        let okAction = UIAlertAction(title: "Save", style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageSaved), nil)
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+        let alertController = UIAlertController(
+            title: "Save image",
+            message: "Are you sure you want to save the image to your photo library?",
+            preferredStyle: .alert
+        )
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+
     }
 
     @objc private func imageSaved(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
