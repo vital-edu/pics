@@ -8,9 +8,9 @@
 import UIKit
 
 protocol ShowPicViewDataType {
-    var id: NSAttributedString { get }
+    var id: String { get }
     var title: String { get }
-    var author: NSAttributedString { get }
+    var author: String { get }
     var size: NSAttributedString { get }
     var url: URL? { get }
     var downloadUrl: NSAttributedString { get }
@@ -23,8 +23,8 @@ struct ShowPicViewData: ShowPicViewDataType {
     let utils = PicUtils(baseUrl: PicsApiClient.baseUrl)
     let selectedEffect: Int
 
-    let id: NSAttributedString
-    let author: NSAttributedString
+    let id: String
+    let author: String
     let size: NSAttributedString
     let downloadUrl: NSAttributedString
 
@@ -33,8 +33,8 @@ struct ShowPicViewData: ShowPicViewDataType {
     init(pic: Pic, width: Int, height: Int, effect: PicEffect = .normal) {
         self.pic = pic
         self.selectedEffect = effect.rawValue
-        self.id = NSMutableAttributedString().bold("ID: ").normal(pic.id)
-        self.author = NSMutableAttributedString().bold("Author: ").normal(pic.id)
+        self.id = pic.id
+        self.author = pic.author
         self.size = NSMutableAttributedString()
             .bold("Size: ")
             .normal("\(pic.width)x\(pic.height)")

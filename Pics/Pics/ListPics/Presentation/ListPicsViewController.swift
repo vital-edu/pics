@@ -84,7 +84,8 @@ extension ListPicsViewController: UICollectionViewDataSource {
 extension ListPicsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let columns = CGFloat(viewModel?.columns ?? 1)
-        let availableWidth = UIScreen.main.bounds.size.width - (spacing * (columns + 2))
+        let spaces = columns + 1
+        let availableWidth = UIScreen.main.bounds.width - (spacing * spaces)
         let width = availableWidth / CGFloat(columns)
         return CGSize(width: width, height: width)
     }

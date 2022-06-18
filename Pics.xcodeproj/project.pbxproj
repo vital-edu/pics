@@ -16,6 +16,7 @@
 		E87A38F8285BBB0D007AC2C6 /* PicViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A38F7285BBB0D007AC2C6 /* PicViewCell.swift */; };
 		E87A38FB285BBCA1007AC2C6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E87A38FA285BBCA1007AC2C6 /* Kingfisher */; };
 		E88ED5BF285E1D1A00F231AC /* PicPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED5BE285E1D1A00F231AC /* PicPreviewViewController.swift */; };
+		E88ED5C1285E237100F231AC /* PicDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED5C0285E237100F231AC /* PicDetailsView.swift */; };
 		E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C182857DFA2001908DC /* AppDelegate.swift */; };
 		E8C98C1B2857DFA2001908DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C1A2857DFA2001908DC /* SceneDelegate.swift */; };
 		E8C98C222857DFA5001908DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C98C212857DFA5001908DC /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		E87A38F5285BB7BC007AC2C6 /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
 		E87A38F7285BBB0D007AC2C6 /* PicViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicViewCell.swift; sourceTree = "<group>"; };
 		E88ED5BE285E1D1A00F231AC /* PicPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicPreviewViewController.swift; sourceTree = "<group>"; };
+		E88ED5C0285E237100F231AC /* PicDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicDetailsView.swift; sourceTree = "<group>"; };
 		E8C98C152857DFA2001908DC /* Pics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C98C182857DFA2001908DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8C98C1A2857DFA2001908DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			children = (
 				E8E2A64F285BDE150009744E /* ShowPicViewController.swift */,
 				E8E2A662285C072D0009744E /* ShowPicViewData.swift */,
+				E88ED5C0285E237100F231AC /* PicDetailsView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			files = (
 				E87A38EE285BAFAB007AC2C6 /* PicsRepository.swift in Sources */,
 				E87A38F8285BBB0D007AC2C6 /* PicViewCell.swift in Sources */,
+				E88ED5C1285E237100F231AC /* PicDetailsView.swift in Sources */,
 				E8E2A658285BE5DF0009744E /* CoordinatorProtocol.swift in Sources */,
 				E8C98C3D28580692001908DC /* Pic.swift in Sources */,
 				E8E2A66C285C98B90009744E /* NSMutableAttributedString+weight.swift in Sources */,

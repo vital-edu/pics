@@ -14,6 +14,7 @@ class PicViewCell: UICollectionViewCell {
     private(set) lazy var imageView: UIImageView = {
         let imageView = UIImageView(frame: self.bounds)
         imageView.contentMode = .scaleAspectFill
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.clipsToBounds = true
         return imageView
     }()

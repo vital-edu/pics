@@ -23,30 +23,14 @@ class ShowPicViewController: BaseViewController {
     var viewModel: ShowPicViewModelProtocol?
 
     private(set) var imageView: UIImageView = {
-        let view = ScaledHeightImageView()
+        let view = UIImageView()
         view.kf.indicatorType = .activity
         view.contentMode = .scaleAspectFit
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return view
     }()
 
-    private let idLabel = UILabel()
-    private let authorLabel = UILabel()
-    private let sizeLabel = UILabel()
-    private let urlLabel = UILabel()
-
-    private lazy var imageInfoStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [
-            idLabel,
-            authorLabel,
-            sizeLabel,
-            urlLabel,
-        ])
-        view.axis = .vertical
-        view.distribution = .fill
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let imageDetailsView = PicDetailsView()
 
     private lazy var optionsSegmentedControl: UISegmentedControl = {
         let view = UISegmentedControl()
@@ -59,11 +43,8 @@ class ShowPicViewController: BaseViewController {
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.addSubview(imageView)
-        view.addSubview(imageInfoStackView)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-
-
     }()
 
     private lazy var toolbar: UIToolbar = {
@@ -72,13 +53,15 @@ class ShowPicViewController: BaseViewController {
                 x: .zero,
                 y: .zero,
                 width: self.view.frame.width,
-                height: 35
+                height: 50
             )
         )
         toolbar.setItems([
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(image: UIImage(systemName: "icloud.and.arrow.down"), style: .plain, target: self, action: #selector(saveImage)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(customView: self.imageDetailsView),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(showInfo)),
         ], animated: false)
         toolbar.sizeToFit()
         toolbar.translatesAutoresizingMaskIntoConstraints = false
@@ -108,19 +91,9 @@ extension ShowPicViewController: ViewConfiguration {
             optionsSegmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: ViewMetrics.leftMargin),
             optionsSegmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -ViewMetrics.rightMargin),
 
-            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            imageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: ViewMetrics.minimumImageHeight),
-
-            imageInfoStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: ViewMetrics.spacing),
-            imageInfoStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: ViewMetrics.leftMargin),
-            imageInfoStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: ViewMetrics.rightMargin),
-            imageInfoStackView.bottomAnchor.constraint(lessThanOrEqualTo: scrollView.bottomAnchor),
-
             scrollView.topAnchor.constraint(equalTo: optionsSegmentedControl.safeAreaLayoutGuide.bottomAnchor, constant: ViewMetrics.spacing),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
             toolbar.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
             toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -142,12 +115,10 @@ extension ShowPicViewController: ViewConfiguration {
             guard let self = self else { return }
 
             self.title = pic.title
-            self.idLabel.attributedText = pic.id
-            self.authorLabel.attributedText = pic.author
-            self.urlLabel.attributedText = pic.downloadUrl
-            self.sizeLabel.attributedText = pic.size
             self.imageView.kf.setImage(with: pic.url)
             self.optionsSegmentedControl.selectedSegmentIndex = pic.selectedEffect
+
+            self.imageDetailsView.setup(author: pic.author)
         }
     }
 
@@ -207,5 +178,9 @@ extension ShowPicViewController: ViewConfiguration {
         }
 
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
+    @objc private func showInfo() {
+
     }
 }
