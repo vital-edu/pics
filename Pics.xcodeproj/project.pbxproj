@@ -17,6 +17,10 @@
 		E87A38FB285BBCA1007AC2C6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E87A38FA285BBCA1007AC2C6 /* Kingfisher */; };
 		E88ED5BF285E1D1A00F231AC /* PicPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED5BE285E1D1A00F231AC /* PicPreviewViewController.swift */; };
 		E88ED5C1285E237100F231AC /* PicDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED5C0285E237100F231AC /* PicDetailsView.swift */; };
+		E88ED5C3285E60E600F231AC /* ShowPicPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED5C2285E60E600F231AC /* ShowPicPageViewController.swift */; };
+		E88ED5C8285E61DF00F231AC /* ShowPicPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED5C7285E61DF00F231AC /* ShowPicPageCoordinator.swift */; };
+		E88ED5CA285E622800F231AC /* ShowPicPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED5C9285E622800F231AC /* ShowPicPageViewModel.swift */; };
+		E88ED5CC285E635500F231AC /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ED5CB285E635500F231AC /* BasePageViewController.swift */; };
 		E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C182857DFA2001908DC /* AppDelegate.swift */; };
 		E8C98C1B2857DFA2001908DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C98C1A2857DFA2001908DC /* SceneDelegate.swift */; };
 		E8C98C222857DFA5001908DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C98C212857DFA5001908DC /* Assets.xcassets */; };
@@ -58,6 +62,10 @@
 		E87A38F7285BBB0D007AC2C6 /* PicViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicViewCell.swift; sourceTree = "<group>"; };
 		E88ED5BE285E1D1A00F231AC /* PicPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicPreviewViewController.swift; sourceTree = "<group>"; };
 		E88ED5C0285E237100F231AC /* PicDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicDetailsView.swift; sourceTree = "<group>"; };
+		E88ED5C2285E60E600F231AC /* ShowPicPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicPageViewController.swift; sourceTree = "<group>"; };
+		E88ED5C7285E61DF00F231AC /* ShowPicPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicPageCoordinator.swift; sourceTree = "<group>"; };
+		E88ED5C9285E622800F231AC /* ShowPicPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPicPageViewModel.swift; sourceTree = "<group>"; };
+		E88ED5CB285E635500F231AC /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
 		E8C98C152857DFA2001908DC /* Pics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C98C182857DFA2001908DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8C98C1A2857DFA2001908DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,9 +147,36 @@
 			children = (
 				E87A38F5285BB7BC007AC2C6 /* ViewConfiguration.swift */,
 				E8E2A652285BE5610009744E /* BaseViewController.swift */,
+				E88ED5CB285E635500F231AC /* BasePageViewController.swift */,
 				E8E2A669285C94D60009744E /* ScaledHeightImageView.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E88ED5C4285E619600F231AC /* ShowPicPage */ = {
+			isa = PBXGroup;
+			children = (
+				E88ED5C6285E61C900F231AC /* Application */,
+				E88ED5C5285E61C200F231AC /* Presentation */,
+			);
+			path = ShowPicPage;
+			sourceTree = "<group>";
+		};
+		E88ED5C5285E61C200F231AC /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E88ED5C2285E60E600F231AC /* ShowPicPageViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E88ED5C6285E61C900F231AC /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E88ED5C7285E61DF00F231AC /* ShowPicPageCoordinator.swift */,
+				E88ED5C9285E622800F231AC /* ShowPicPageViewModel.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 		E8C98C0C2857DFA1001908DC = {
@@ -191,6 +226,7 @@
 				E8C98C3A28580642001908DC /* Core */,
 				E8C98C33285804FB001908DC /* ListPics */,
 				E8E2A64A285BDD920009744E /* ShowPic */,
+				E88ED5C4285E619600F231AC /* ShowPicPage */,
 			);
 			path = Pics;
 			sourceTree = "<group>";
@@ -381,6 +417,7 @@
 				E87A38EE285BAFAB007AC2C6 /* PicsRepository.swift in Sources */,
 				E87A38F8285BBB0D007AC2C6 /* PicViewCell.swift in Sources */,
 				E88ED5C1285E237100F231AC /* PicDetailsView.swift in Sources */,
+				E88ED5CA285E622800F231AC /* ShowPicPageViewModel.swift in Sources */,
 				E8E2A658285BE5DF0009744E /* CoordinatorProtocol.swift in Sources */,
 				E8C98C3D28580692001908DC /* Pic.swift in Sources */,
 				E8E2A66C285C98B90009744E /* NSMutableAttributedString+weight.swift in Sources */,
@@ -394,13 +431,16 @@
 				E8C98C312857E0E6001908DC /* Coordinator.swift in Sources */,
 				E8C98C372858054C001908DC /* PicsRemoteDataSource.swift in Sources */,
 				E8E2A64D285BDDCA0009744E /* ShowPicCoordinator.swift in Sources */,
+				E88ED5C8285E61DF00F231AC /* ShowPicPageCoordinator.swift in Sources */,
 				E8E2A656285BE5C10009744E /* Deinitcallable.swift in Sources */,
 				E8E2A661285BEF430009744E /* PaginationParams.swift in Sources */,
 				E8E2A653285BE5610009744E /* BaseViewController.swift in Sources */,
 				E8E2A650285BDE150009744E /* ShowPicViewController.swift in Sources */,
 				E87A38E9285BAB07007AC2C6 /* ListPicsCoordinator.swift in Sources */,
 				E8E2A66A285C94D60009744E /* ScaledHeightImageView.swift in Sources */,
+				E88ED5C3285E60E600F231AC /* ShowPicPageViewController.swift in Sources */,
 				E8E2A65A285BEDB50009744E /* ShowPicViewModel.swift in Sources */,
+				E88ED5CC285E635500F231AC /* BasePageViewController.swift in Sources */,
 				E8C98C192857DFA2001908DC /* AppDelegate.swift in Sources */,
 				E8C98C1B2857DFA2001908DC /* SceneDelegate.swift in Sources */,
 				E88ED5BF285E1D1A00F231AC /* PicPreviewViewController.swift in Sources */,
