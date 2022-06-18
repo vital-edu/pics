@@ -116,7 +116,11 @@ extension ShowPicViewController: ViewConfiguration {
         view.backgroundColor = .systemBackground
         guard let viewModel = viewModel else { return }
 
-        for segment in viewModel.effects {
+        let segments = viewModel.effects.sorted { left, right in
+            return left.key < right.key
+        }
+
+        for segment in segments {
             optionsSegmentedControl.insertSegment(withTitle: segment.value, at: segment.key, animated: false)
         }
 
