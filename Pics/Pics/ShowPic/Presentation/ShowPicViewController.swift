@@ -22,6 +22,16 @@ class ShowPicViewController: BaseViewController {
 
     var viewModel: ShowPicViewModelProtocol?
 
+    private let navigationTitleLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
+    private let navigationSubtitleLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
     private(set) var imageView: UIImageView = {
         let view = UIImageView()
         view.kf.indicatorType = .activity
@@ -57,11 +67,11 @@ class ShowPicViewController: BaseViewController {
             )
         )
         toolbar.setItems([
-            UIBarButtonItem(image: UIImage(systemName: "icloud.and.arrow.down"), style: .plain, target: self, action: #selector(saveImage)),
+            UIBarButtonItem(image: UIImage(systemName: "safari"), style: .plain, target: self, action: #selector(openImageInBrowser)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(customView: self.imageDetailsView),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(showInfo)),
+            UIBarButtonItem(image: UIImage(systemName: "icloud.and.arrow.down"), style: .plain, target: self, action: #selector(saveImage)),
         ], animated: false)
         toolbar.sizeToFit()
         toolbar.translatesAutoresizingMaskIntoConstraints = false
@@ -111,10 +121,20 @@ extension ShowPicViewController: ViewConfiguration {
             optionsSegmentedControl.insertSegment(withTitle: segment.value, at: segment.key, animated: false)
         }
 
+        let stackView = UIStackView(arrangedSubviews: [
+            navigationTitleLabel,
+            navigationSubtitleLabel,
+        ])
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        self.navigationItem.titleView = stackView
+
         viewModel.pic.bindAndFire { [weak self] pic in
             guard let self = self else { return }
 
-            self.title = pic.title
+            self.navigationTitleLabel.attributedText = NSMutableAttributedString().bold("Image \(pic.id)", size: 14)
+            self.navigationSubtitleLabel.attributedText = NSMutableAttributedString().normal("\(pic.width) x \(pic.height)", size: 12)
+
             self.imageView.kf.setImage(with: pic.url)
             self.optionsSegmentedControl.selectedSegmentIndex = pic.selectedEffect
 
@@ -180,7 +200,8 @@ extension ShowPicViewController: ViewConfiguration {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    @objc private func showInfo() {
-
+    @objc private func openImageInBrowser() {
+        guard let picUrl = viewModel?.pic.value.url else { return }
+        UIApplication.shared.open(picUrl, options: [:], completionHandler: nil)
     }
 }

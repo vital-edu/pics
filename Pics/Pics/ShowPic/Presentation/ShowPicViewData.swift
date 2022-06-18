@@ -11,7 +11,8 @@ protocol ShowPicViewDataType {
     var id: String { get }
     var title: String { get }
     var author: String { get }
-    var size: NSAttributedString { get }
+    var width: Int { get }
+    var height: Int { get }
     var url: URL? { get }
     var downloadUrl: NSAttributedString { get }
     var selectedEffect: Int { get }
@@ -25,7 +26,8 @@ struct ShowPicViewData: ShowPicViewDataType {
 
     let id: String
     let author: String
-    let size: NSAttributedString
+    let width: Int
+    let height: Int
     let downloadUrl: NSAttributedString
 
     var title: String { pic.author }
@@ -35,9 +37,8 @@ struct ShowPicViewData: ShowPicViewDataType {
         self.selectedEffect = effect.rawValue
         self.id = pic.id
         self.author = pic.author
-        self.size = NSMutableAttributedString()
-            .bold("Size: ")
-            .normal("\(pic.width)x\(pic.height)")
+        self.width = pic.width
+        self.height = pic.height
         self.downloadUrl = NSMutableAttributedString()
             .bold("Download URL: ")
             .normal(pic.downloadUrl)
